@@ -1,8 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class DashboardComLogo extends JFrame {
-    public DashboardComLogo() {
+public class Home extends JFrame {
+    public Home() {
         setTitle("Gestão da Boutique BDA");
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,12 +68,13 @@ public class DashboardComLogo extends JFrame {
 
         centralPanel.add(resumoPanel, BorderLayout.NORTH);
         centralPanel.add(scrollTabela, BorderLayout.CENTER);
-
+        centralPanel.add(logoLabel, BorderLayout.SOUTH);
         // Adiciona no frame
         add(menuPanel, BorderLayout.WEST);
         add(centralPanel, BorderLayout.CENTER);
-
         setVisible(true);
+
+        
     }
 
     private JButton criarBotaoMenu(String texto, String caminhoIcone) {
@@ -97,6 +98,6 @@ public class DashboardComLogo extends JFrame {
     }
 
     public static void main(String[] args) {
-        new DashboardComLogo();
+        new Home();
     }
 }
