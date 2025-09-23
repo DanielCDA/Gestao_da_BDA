@@ -68,7 +68,7 @@ public class Home extends JFrame {
 
         centralPanel.add(resumoPanel, BorderLayout.NORTH);
         centralPanel.add(scrollTabela, BorderLayout.CENTER);
-        centralPanel.add(logoLabel, BorderLayout.SOUTH);
+       
         // Adiciona no frame
         add(menuPanel, BorderLayout.WEST);
         add(centralPanel, BorderLayout.CENTER);
