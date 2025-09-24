@@ -1,10 +1,11 @@
-import javax.swing.*;
 import java.awt.*;
-
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 public class Produto {
+    private DefaultTableModel modeloTabela;
+    private JTable tabelaProdutos;
+
     public Produto() {
          JFrame painel = new JFrame("Produtos");
          painel.setSize(1000, 600);
@@ -49,15 +50,79 @@ public class Produto {
             {5, "Relógio de Pulso", "Relógio analógico com pulseira de couro", 250.00, "Acessórios"},
             {6, "Tênis Esportivo", "Tênis para corrida unissex", 180.00, "Calçados"}
         };
-        TableModel modeloTabela = new DefaultTableModel(dados, colunas);
-        JTable tabelaProdutos = new JTable(modeloTabela);
+        modeloTabela = new DefaultTableModel(dados, colunas);
+        tabelaProdutos = new JTable(modeloTabela);
         JScrollPane scroll = new JScrollPane(tabelaProdutos);
+
+         // 🔹 Ações dos botões
+        botaoAdicionar.addActionListener(e -> adicionarProduto());
+        botaoEditar.addActionListener(e -> editarProduto());
+        botaoExcluir.addActionListener(e -> excluirProduto());
 
         painelCenter.add(scroll, BorderLayout.CENTER);
         painel.add(painelCenter, BorderLayout.CENTER);
          painel.add(painelNorth, BorderLayout.NORTH);
          painel.setVisible(true);
         
+    }
+
+    // Método para adicionar produto na tabela
+    private void adicionarProduto() {
+        String nome = JOptionPane.showInputDialog(null, "Nome do Produto:");
+        if (nome == null || nome.trim().isEmpty()) return;
+
+        String descricao = JOptionPane.showInputDialog(null, "Descrição:");
+        if (descricao == null || descricao.trim().isEmpty()) return;
+
+        String precoStr = JOptionPane.showInputDialog(null, "Preço:");
+        if (precoStr == null || precoStr.trim().isEmpty()) return;
+        double preco = Double.parseDouble(precoStr);
+
+        String categoria = JOptionPane.showInputDialog(null, "Categoria:");
+        if (categoria == null || categoria.trim().isEmpty()) return;
+
+        int novoId = modeloTabela.getRowCount() + 1;
+        modeloTabela.addRow(new Object[]{novoId, nome, descricao, preco, categoria});
+    }
+
+    private void editarProduto() {
+        int linhaSelecionada = tabelaProdutos.getSelectedRow();
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione um produto para editar!");
+            return;
+        }
+
+        String nome = JOptionPane.showInputDialog(null, "Nome do Produto:", modeloTabela.getValueAt(linhaSelecionada, 1));
+        if (nome != null) modeloTabela.setValueAt(nome, linhaSelecionada, 1);
+
+        String descricao = JOptionPane.showInputDialog(null, "Descrição:", modeloTabela.getValueAt(linhaSelecionada, 2));
+        if (descricao != null) modeloTabela.setValueAt(descricao, linhaSelecionada, 2);
+
+        String precoStr = JOptionPane.showInputDialog(null, "Preço:", modeloTabela.getValueAt(linhaSelecionada, 3));
+        if (precoStr != null) {
+            double preco = Double.parseDouble(precoStr);
+            modeloTabela.setValueAt(preco, linhaSelecionada, 3);
+        }
+
+        String categoria = JOptionPane.showInputDialog(null, "Categoria:", modeloTabela.getValueAt(linhaSelecionada, 4));
+        if (categoria != null) modeloTabela.setValueAt(categoria, linhaSelecionada, 4);
+    }
+
+    private void excluirProduto() {
+        int linhaSelecionada = tabelaProdutos.getSelectedRow();
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir!");
+            return;
+        }
+
+        int confirmacao = JOptionPane.showConfirmDialog(null, 
+            "Tem certeza que deseja excluir este produto?", 
+            "Confirmar Exclusão", 
+            JOptionPane.YES_NO_OPTION);
+            
+        if (confirmacao == JOptionPane.YES_OPTION) {
+            modeloTabela.removeRow(linhaSelecionada);
+        }
     }
    
     
