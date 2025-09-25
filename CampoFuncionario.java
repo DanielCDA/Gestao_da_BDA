@@ -3,10 +3,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class CampoFuncionario {
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Minha Primeira Janela");
-        frame.setSize(400, 300);
+public class CampoFuncionario extends JPanel {
+    private JFrame frame;
+
+    public CampoFuncionario() {
+        frame = new JFrame("Minha Primeira Janela");
+        frame.setSize(800, 600);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -22,12 +24,14 @@ public class CampoFuncionario {
         panel.add(botao);
 
         botao.addActionListener(e -> {
-            
-            JOptionPane.showMessageDialog(frame, panel, "Título da Janela", JOptionPane.INFORMATION_MESSAGE);
-        // Limpar campos após exibir a mensagem
+
+            frame= new JFrame("Minha Primeira Janela");
+            frame.setSize(400, 300);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
        
         });
-
+        
         
 
 
@@ -37,4 +41,8 @@ public class CampoFuncionario {
 
         frame.setVisible(true);
     }
+
+    public static void main(String[] args) {
+        new CampoFuncionario();
     }
+}
