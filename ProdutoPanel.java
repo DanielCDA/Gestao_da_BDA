@@ -57,21 +57,29 @@ public class ProdutoPanel extends JPanel {
 
     // Método para adicionar produto na tabela
     private void adicionarProduto() {
-        String nome = JOptionPane.showInputDialog(null, "Nome do Produto:");
-        if (nome == null || nome.trim().isEmpty()) return;
+        
+        JPanel CampoFuncionario = new JPanel();
+        CampoFuncionario.setSize(new Dimension(400, 300));
+        CampoFuncionario.setLayout(new GridLayout(5, 2, 10, 10));
+        
+       
 
-        String descricao = JOptionPane.showInputDialog(null, "Descrição:");
-        if (descricao == null || descricao.trim().isEmpty()) return;
 
-        String precoStr = JOptionPane.showInputDialog(null, "Preço:");
-        if (precoStr == null || precoStr.trim().isEmpty()) return;
-        double preco = Double.parseDouble(precoStr);
+        // String nome = JOptionPane.showInputDialog(null, "Nome do Produto:");
+        // if (nome == null || nome.trim().isEmpty()) return;
 
-        String categoria = JOptionPane.showInputDialog(null, "Categoria:");
-        if (categoria == null || categoria.trim().isEmpty()) return;
+        // String descricao = JOptionPane.showInputDialog(null, "Descrição:");
+        // if (descricao == null || descricao.trim().isEmpty()) return;
 
-        int novoId = modeloTabela.getRowCount() + 1;
-        modeloTabela.addRow(new Object[]{novoId, nome, descricao, preco, categoria});
+        // String precoStr = JOptionPane.showInputDialog(null, "Preço:");
+        // if (precoStr == null || precoStr.trim().isEmpty()) return;
+        // double preco = Double.parseDouble(precoStr);
+
+        // String categoria = JOptionPane.showInputDialog(null, "Categoria:");
+        // if (categoria == null || categoria.trim().isEmpty()) return;
+
+        // int novoId = modeloTabela.getRowCount() + 1;
+        // modeloTabela.addRow(new Object[]{novoId, nome, descricao, preco, categoria});
     }
 
     private void editarProduto() {
