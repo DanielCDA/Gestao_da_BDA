@@ -34,7 +34,7 @@ public class CampoFuncionario extends JPanel {
     }
 
     private void adicionarFuncionario() {
-       JFrame frame = new JFrame ("Addicionar Funcionario");
+        frame = new JFrame ("Addicionar Funcionario");
         frame.setSize(800,300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);

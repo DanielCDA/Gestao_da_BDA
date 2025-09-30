@@ -57,14 +57,43 @@ public class ProdutoPanel extends JPanel {
 
     // Método para adicionar produto na tabela
     private void adicionarProduto() {
-        
-        JPanel CampoFuncionario = new JPanel();
-        CampoFuncionario.setSize(new Dimension(400, 300));
-        CampoFuncionario.setLayout(new GridLayout(5, 2, 10, 10));
-        
-       
+        JFrame frame = new JFrame ("Adicionar Produto");
+        frame.setSize(800,300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(null);
 
+        // Criar os rótulos
+        JLabel nome = new JLabel ("Nome:");
+        nome.setBounds(50, 100, 80, 30);
 
+        JLabel descricao = new JLabel ("Descrição:");
+        descricao.setBounds(50, 150, 80, 30);
+
+        JLabel preco = new JLabel ("Preço:");
+        preco.setBounds(50, 200, 80, 30);
+
+        JLabel categoria = new JLabel ("Categoria:");
+        categoria.setBounds(350, 50, 80, 30);
+
+        // Criar os campos de texto
+        JTextField  textNome = new JTextField();
+        textNome.setBounds(110, 100, 200, 30);
+
+        JTextField textPreco = new JTextField();
+        textPreco.setBounds(110, 200, 200, 30);
+
+        JTextField  textDescricao = new JTextField();
+        textDescricao.setBounds(110, 150, 200, 30);
+
+        JTextField textCategoria = new JTextField();
+        textCategoria.setBounds(420, 50, 200, 30);
+
+        JButton botao = new JButton ("Entrar");
+        botao.setBounds(310, 210, 80, 30);
+        botao.addActionListener(e -> {
+           int novoId = modeloTabela.getRowCount() + 1;
+         modeloTabela.addRow(new Object[]{novoId, textNome.getText(), textDescricao.getText(), textPreco.getText(), textCategoria.getText()});
+        });        
         // String nome = JOptionPane.showInputDialog(null, "Nome do Produto:");
         // if (nome == null || nome.trim().isEmpty()) return;
 
@@ -78,8 +107,17 @@ public class ProdutoPanel extends JPanel {
         // String categoria = JOptionPane.showInputDialog(null, "Categoria:");
         // if (categoria == null || categoria.trim().isEmpty()) return;
 
-        // int novoId = modeloTabela.getRowCount() + 1;
-        // modeloTabela.addRow(new Object[]{novoId, nome, descricao, preco, categoria});
+         
+         frame.add(nome);
+        frame.add(descricao);
+        frame.add(preco);
+        frame.add(categoria);
+        frame.add(textNome);
+        frame.add(textDescricao);
+        frame.add(textPreco);
+        frame.add(textCategoria);
+        frame.add(botao);
+        frame.setVisible(true);
     }
 
     private void editarProduto() {
