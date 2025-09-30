@@ -56,69 +56,70 @@ public class ProdutoPanel extends JPanel {
     }
 
     // Método para adicionar produto na tabela
-    private void adicionarProduto() {
-        JFrame frame = new JFrame ("Adicionar Produto");
-        frame.setSize(800,300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
+ private void adicionarProduto() 
+    {
+        // O segundo parâmetro é o título da janela, o terceiro (true) torna modal
+        JDialog dialog = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), "Adicionar Produto", true);
+        dialog.setSize(700, 300);
+        dialog.setLayout(null);
+        dialog.setLocationRelativeTo(this); // centraliza em relação ao painel principal
 
         // Criar os rótulos
-        JLabel nome = new JLabel ("Nome:");
-        nome.setBounds(50, 100, 80, 30);
+        JLabel nome = new JLabel("Nome:");
+        nome.setBounds(50, 50, 80, 30);
 
-        JLabel descricao = new JLabel ("Descrição:");
-        descricao.setBounds(50, 150, 80, 30);
+        JLabel descricao = new JLabel("Descrição:");
+        descricao.setBounds(50, 100, 80, 30);
 
-        JLabel preco = new JLabel ("Preço:");
-        preco.setBounds(50, 200, 80, 30);
+        JLabel preco = new JLabel("Preço:");
+        preco.setBounds(350, 100, 80, 30);
 
-        JLabel categoria = new JLabel ("Categoria:");
+        JLabel categoria = new JLabel("Categoria:");
         categoria.setBounds(350, 50, 80, 30);
 
         // Criar os campos de texto
-        JTextField  textNome = new JTextField();
-        textNome.setBounds(110, 100, 200, 30);
+        JTextField textNome = new JTextField();
+        textNome.setBounds(120, 50, 200, 30);
+
+        JTextField textDescricao = new JTextField();
+        textDescricao.setBounds(120, 100, 200, 30);
 
         JTextField textPreco = new JTextField();
-        textPreco.setBounds(110, 200, 200, 30);
-
-        JTextField  textDescricao = new JTextField();
-        textDescricao.setBounds(110, 150, 200, 30);
+        textPreco.setBounds(420, 100, 200, 30);
 
         JTextField textCategoria = new JTextField();
         textCategoria.setBounds(420, 50, 200, 30);
 
-        JButton botao = new JButton ("Entrar");
+        // Botão para salvar
+        JButton botao = new JButton("Salvar");
         botao.setBounds(310, 210, 80, 30);
         botao.addActionListener(e -> {
-           int novoId = modeloTabela.getRowCount() + 1;
-         modeloTabela.addRow(new Object[]{novoId, textNome.getText(), textDescricao.getText(), textPreco.getText(), textCategoria.getText()});
-        });        
-        // String nome = JOptionPane.showInputDialog(null, "Nome do Produto:");
-        // if (nome == null || nome.trim().isEmpty()) return;
+            int novoId = modeloTabela.getRowCount() + 1;
+            modeloTabela.addRow(new Object[]{
+                    novoId,
+                    textNome.getText(),
+                    textDescricao.getText(),
+                    textPreco.getText(),
+                    textCategoria.getText()
+            });
 
-        // String descricao = JOptionPane.showInputDialog(null, "Descrição:");
-        // if (descricao == null || descricao.trim().isEmpty()) return;
+            dialog.dispose(); // ✅ fecha a janela depois de adicionar
+        });
 
-        // String precoStr = JOptionPane.showInputDialog(null, "Preço:");
-        // if (precoStr == null || precoStr.trim().isEmpty()) return;
-        // double preco = Double.parseDouble(precoStr);
+        // Adicionar os componentes no diálogo
+        dialog.add(nome);
+        dialog.add(descricao);
+        dialog.add(preco);
+        dialog.add(categoria);
+        dialog.add(textNome);
+        dialog.add(textDescricao);
+        dialog.add(textPreco);
+        dialog.add(textCategoria);
+        dialog.add(botao);
 
-        // String categoria = JOptionPane.showInputDialog(null, "Categoria:");
-        // if (categoria == null || categoria.trim().isEmpty()) return;
-
-         
-         frame.add(nome);
-        frame.add(descricao);
-        frame.add(preco);
-        frame.add(categoria);
-        frame.add(textNome);
-        frame.add(textDescricao);
-        frame.add(textPreco);
-        frame.add(textCategoria);
-        frame.add(botao);
-        frame.setVisible(true);
+        dialog.setVisible(true);
     }
+
 
     private void editarProduto() {
         int linhaSelecionada = tabelaProdutos.getSelectedRow();
