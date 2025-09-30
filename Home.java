@@ -26,15 +26,14 @@ public class Home extends JFrame {
         logoPanel.add(logoLabel);
 
         JPanel botoesPanel = new JPanel();
-        botoesPanel.setLayout(new GridLayout(10, 1, 0, 5));
+        botoesPanel.setLayout(new GridLayout(9, 1, 0, 1));
         botoesPanel.setBackground(new Color(0xede8df));
 
         botoesPanel.add(criarBotaoMenu("Home", "icons/home.png"));
         botoesPanel.add(criarBotaoMenu("Produto", "icons/produto.png"));
-        botoesPanel.add(criarBotaoMenu("Estoque", "icons/estoque.png"));
         botoesPanel.add(criarBotaoMenu("Cliente", "icons/cliente.png"));
         botoesPanel.add(criarBotaoMenu("Venda", "icons/venda.png"));
-        botoesPanel.add(criarBotaoMenu("Usuário", "icons/usuario.png"));
+        botoesPanel.add(criarBotaoMenu("Profissional", "icons/usuario.png"));
         botoesPanel.add(criarBotaoMenu("Sair", "icons/sair.png"));
 
         menuPanel.add(logoPanel, BorderLayout.NORTH);

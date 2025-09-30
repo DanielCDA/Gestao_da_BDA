@@ -1,6 +1,6 @@
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.JList;
 
 public class teste {
     public static void main(String[] args) {
@@ -8,7 +8,8 @@ public class teste {
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JOptionPane.showInputDialog(null, "Categoria:");
+        JList<String> lista = new JList<>(new String[]{"Item 1", "Item 2", "Item 3"});
+        frame.add(lista);
         frame.setVisible(true);
     }    
 }

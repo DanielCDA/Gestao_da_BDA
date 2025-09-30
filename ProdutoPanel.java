@@ -60,7 +60,7 @@ public class ProdutoPanel extends JPanel {
     {
         // O segundo parâmetro é o título da janela, o terceiro (true) torna modal
         JDialog dialog = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), "Adicionar Produto", true);
-        dialog.setSize(700, 300);
+        dialog.setSize(690, 290);
         dialog.setLayout(null);
         dialog.setLocationRelativeTo(this); // centraliza em relação ao painel principal
 
@@ -77,6 +77,11 @@ public class ProdutoPanel extends JPanel {
         JLabel categoria = new JLabel("Categoria:");
         categoria.setBounds(350, 50, 80, 30);
 
+        String[] categorias = {"Roupa", "Calçado"};
+        JComboBox<String> comboCategoria = new JComboBox<>(categorias);
+        comboCategoria.setBounds(420, 50, 200, 30);
+   
+
         // Criar os campos de texto
         JTextField textNome = new JTextField();
         textNome.setBounds(120, 50, 200, 30);
@@ -85,36 +90,47 @@ public class ProdutoPanel extends JPanel {
         textDescricao.setBounds(120, 100, 200, 30);
 
         JTextField textPreco = new JTextField();
-        textPreco.setBounds(420, 100, 200, 30);
-
-        JTextField textCategoria = new JTextField();
-        textCategoria.setBounds(420, 50, 200, 30);
+        textPreco.setBounds(420, 100, 200, 30);       
 
         // Botão para salvar
         JButton botao = new JButton("Salvar");
         botao.setBounds(310, 210, 80, 30);
         botao.addActionListener(e -> {
+
+            // Adiciona uma nova linha na tabela com os dados inseridos
+            if (!textNome.getText().isEmpty() && !textDescricao.getText().isEmpty() && !textPreco.getText().isEmpty()) 
+            {
+                try {
+                    Double.parseDouble(textPreco.getText());
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(dialog, "Preço inválido! Insira um número.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            } else {
+                JOptionPane.showMessageDialog(dialog, "Por favor, preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             int novoId = modeloTabela.getRowCount() + 1;
             modeloTabela.addRow(new Object[]{
                     novoId,
                     textNome.getText(),
                     textDescricao.getText(),
                     textPreco.getText(),
-                    textCategoria.getText()
+                    comboCategoria.getSelectedItem().toString()
             });
 
             dialog.dispose(); // ✅ fecha a janela depois de adicionar
         });
 
         // Adicionar os componentes no diálogo
+        dialog.add(categoria);
+        dialog.add(comboCategoria);
         dialog.add(nome);
         dialog.add(descricao);
         dialog.add(preco);
-        dialog.add(categoria);
         dialog.add(textNome);
         dialog.add(textDescricao);
         dialog.add(textPreco);
-        dialog.add(textCategoria);
         dialog.add(botao);
 
         dialog.setVisible(true);
