@@ -93,8 +93,8 @@ public class ProdutoPanel extends JPanel {
         textPreco.setBounds(420, 100, 200, 30);       
 
         // Botão para salvar
-        JButton botao = new JButton("Salvar");
-        botao.setBounds(310, 210, 80, 30);
+        JButton botao = new JButton("Salvar Produto");
+        botao.setBounds(310, 210, 150, 30);
         botao.addActionListener(e -> {
 
             // Adiciona uma nova linha na tabela com os dados inseridos

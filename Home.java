@@ -89,7 +89,13 @@ public class Home extends JFrame {
                 centralPanel.add(new ProdutoPanel(), BorderLayout.CENTER);
             } else if (texto.equals("Home")) {
                 centralPanel.add(homePanel, BorderLayout.CENTER);
-            }
+            }else if (texto.equals("Venda")) {
+                centralPanel.add(new Vendas(), BorderLayout.CENTER);
+            } else if (texto.equals("Profissional")) {
+                centralPanel.add(new CampoFuncionario(), BorderLayout.CENTER);
+            } else if (texto.equals("Sair")) {
+                System.exit(0);
+            } // Adicione mais condições para outros botões conforme necessário
             centralPanel.revalidate();
             centralPanel.repaint();
         });

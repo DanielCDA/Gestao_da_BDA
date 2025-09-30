@@ -1,40 +1,93 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
 
 
 
 
 public class CampoFuncionario extends JPanel {
-    private JFrame frame;
+     private DefaultTableModel modeloTabela;
+    private JTable tabelaProdutos;
 
     public CampoFuncionario() {
-        frame = new JFrame("Minha Primeira Janela");
-        frame.setSize(800, 600);
+        setLayout(new BorderLayout());
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Criar o JPanel
-        JPanel panel = new JPanel();
+        // Painel superior (botões)
+        JPanel painelNorth = new JPanel();
+        painelNorth.setPreferredSize(new Dimension(1000, 40));
 
-        // Adicionar componentes ao JPanel
-        JLabel label = new JLabel("Olá, Daniel!");
-        JButton botao = new JButton("Clique aqui");
+        JButton botaoAdicionar = new JButton("Adicionar Produto");
+        botaoAdicionar.setBackground(new Color(0, 153, 76));
+        botaoAdicionar.setForeground(Color.WHITE);
+        botaoAdicionar.setFocusPainted(false);
 
-        botao.addActionListener(e -> 
-        { adicionarFuncionario();   
-        });
-        
+        JButton botaoEditar = new JButton("Editar Produto");
+        botaoEditar.setBackground(new Color(255, 153, 0));
+        botaoEditar.setForeground(Color.WHITE);
+        botaoEditar.setFocusPainted(false);
 
-        // Adicionar o JPanel ao JFrame
-        panel.add(label);
-        panel.add(botao);
-        frame.add(panel);
+        JButton botaoExcluir = new JButton("Excluir Produto");
+        botaoExcluir.setBackground(new Color(204, 0, 0));
+        botaoExcluir.setForeground(Color.WHITE);
+        botaoExcluir.setFocusPainted(false);
 
+        painelNorth.add(botaoAdicionar);
+        painelNorth.add(botaoEditar);
+        painelNorth.add(botaoExcluir);
 
-        frame.setVisible(true);
+        // Painel central (tabela)
+        JPanel painelCenter = new JPanel();
+        painelCenter.setLayout(new BorderLayout());
+        painelCenter.setBackground(Color.WHITE);
+
+        String[] colunas = {"ID", "Nome", "Número de Telefone", "Endereço", "Categoria"};
+        Object[][] dados = {};
+        modeloTabela = new DefaultTableModel(dados, colunas);
+        tabelaProdutos = new JTable(modeloTabela);
+        JScrollPane scroll = new JScrollPane(tabelaProdutos);
+
+        // 🔹 Ações dos botões
+        botaoAdicionar.addActionListener(e -> adicionarProduto());
+        botaoEditar.addActionListener(e -> editarProduto());
+        botaoExcluir.addActionListener(e -> excluirProduto());
+
+        painelCenter.add(scroll, BorderLayout.CENTER);
+
+        // Adiciona os painéis no ProdutoPanel
+        add(painelNorth, BorderLayout.NORTH);
+        add(painelCenter, BorderLayout.CENTER);
     }
 
+    // public CampoFuncionario() {
+    //     frame = new JFrame("Minha Primeira Janela");
+    //     frame.setSize(800, 600);
+
+    //     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    //     // Criar o JPanel
+    //     JPanel panel = new JPanel();
+
+    //     // Adicionar componentes ao JPanel
+    //     JLabel label = new JLabel("Olá, Daniel!");
+    //     JButton botao = new JButton("Clique aqui");
+
+    //     botao.addActionListener(e -> 
+    //     { adicionarFuncionario();   
+    //     });
+        
+
+    //     // Adicionar o JPanel ao JFrame
+    //     panel.add(label);
+    //     panel.add(botao);
+    //     frame.add(panel);
+
+
+    //     frame.setVisible(true);
+    // }
+
     private void adicionarFuncionario() {
-        frame = new JFrame ("Addicionar Funcionario");
+        JFrame frame = new JFrame ("Addicionar Funcionario");
         frame.setSize(800,300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
