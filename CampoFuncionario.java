@@ -58,40 +58,32 @@ public class CampoFuncionario extends JPanel {
 
         // Criar os campos de texto
         JTextField  textNome = new JTextField();
-        textNome.setBounds(110, 50, 200, 30);
+        textNome.setBounds(110, 100, 200, 30);
+
+        JTextField  textId  = new JTextField();
+        textId.setBounds(110, 50, 200, 30);
 
         JTextField  textSenha = new JTextField();
-        textSenha.setBounds(110, 100, 200, 30);
-
-        JTextField  textId = new JTextField();
-        textId.setBounds(110, 150, 200, 30);
+        textSenha.setBounds(110, 150, 200, 30);
 
         JTextField numTelefone = new JTextField();
         numTelefone.setBounds(420, 50, 200, 30);
 
         JButton botao = new JButton ("Entrar");
         botao.setBounds(310, 210, 80, 30);
-
-
-
         botao.addActionListener(e -> {
             String nomeDigitado = textNome.getText();
             String senhaDigitada = textSenha.getText();
-            if (nomeDigitado.equals("Daniel") && senhaDigitada.equals("123"))
-            {
-                JOptionPane.showMessageDialog(frame, "Login bem-sucedido!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(frame, "Nome ou senha incorretos.", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        });
-
-
+            String idDigitado = textId.getText();
+            String telefoneDigitado = numTelefone.getText();
+            // Aqui você pode adicionar a lógica para processar os dados do funcionário
+            JOptionPane.showMessageDialog(frame, "Funcionário adicionado:\nNome: " + nomeDigitado + "\nSenha: " + senhaDigitada + "\nID: " + idDigitado + "\nTelefone: " + telefoneDigitado, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        });        
         frame.add(nome);
         frame.add(senha);
         frame.add(id);
         frame.add(telefone);
         frame.add(genero);
-
         frame.add(textNome);
         frame.add(textSenha);
         frame.add(textId);
@@ -122,11 +114,6 @@ public class CampoFuncionario extends JPanel {
         card.add(feminino);
 
         return card;
-    }
-
-    private Component criarCard(String string, String string2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'criarCard'");
     }
 
     public static void main(String[] args) {
